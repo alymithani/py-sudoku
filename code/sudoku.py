@@ -64,7 +64,7 @@ def open_file(file):
     return board
 
 if __name__ == "__main__":
-    board = open_file("./board1.txt")
+    board = open_file("./examples/board1.txt")
     if solve(board):
         print_board(board)
     else:
