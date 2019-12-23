@@ -60,4 +60,3 @@ def solve(board):
                 return True
             board[i][j] = 0
     return False
-    
