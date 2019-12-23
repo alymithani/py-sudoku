@@ -60,23 +60,4 @@ def solve(board):
                 return True
             board[i][j] = 0
     return False
-
-def open_file(file):
-    # returns a 9x9 array of integers representing a sudoku board from a given input file
-    f = open(file)
-    board = []
-    for i in range(9):
-        board.append(f.readline().split())
-    for i in range(9):
-        for j in range(9):
-            board[i][j] = int(board[i][j])
-    return board
-
-if __name__ == "__main__":
-    for i in range(1, 4):
-        board = open_file("./examples/board{0}.txt".format(i))
-        if solve(board):
-            print_board(board)
-        else:
-            print("There is no possible solution.")
-        print()
+    
