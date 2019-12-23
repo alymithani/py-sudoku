@@ -64,8 +64,10 @@ def open_file(file):
     return board
 
 if __name__ == "__main__":
-    board = open_file("./examples/board1.txt")
-    if solve(board):
-        print_board(board)
-    else:
-        print("There is no possible solution.")
+    for i in range(1, 4):
+        board = open_file("./examples/board{0}.txt".format(i))
+        if solve(board):
+            print_board(board)
+        else:
+            print("There is no possible solution.")
+        print()
