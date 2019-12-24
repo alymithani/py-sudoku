@@ -1,3 +1,4 @@
+import random
 import sudoku
 
 def open_file(file):
@@ -26,9 +27,45 @@ def reflect_y(board):
             board[i][8-j] = temp
 
 def rotate(board):
-    # rotate clockwise 90 degrees
+    # rotates counter-clockwise
+    rotated_board = []
+    for i in range(9):
+        array = []
+        for j in range(9):
+            array.append(board[j][8-i])
+        rotated_board.append(array)
+    return rotated_board
+
+def random_array():
+    array = [0]
+    while (len(array) != 10):
+        x = random.randint(1,9)
+        if (x not in array):
+            array.append(x)
+    return array
+
+def generate(difficulty):
+    try:
+        board = open_file("./seeds/{0}.txt".format(difficulty))
+    except:
+        print('Invalid difficulty selected.')
+        return 0
+    x = random.randint(0,1)
+    if (x):
+        reflect_x(board)
+    x = random.randint(0,1)
+    if (x):
+        reflect_y(board)
+    x = random.randint(0,3)
+    for i in range(x):
+        board = rotate(board)
+    array = random_array()
+    for i in range(9):
+        for j in range(9):
+            board[i][j] = array[board[i][j]]
+    return board
 
 if __name__ == "__main__":
-    board = open_file("./seeds/easy.txt")
-    reflect_y(board)
+    board = generate("very_hard")
+    assert board
     sudoku.print_board(board)
