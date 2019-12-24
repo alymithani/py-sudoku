@@ -69,3 +69,6 @@ if __name__ == "__main__":
     board = generate("very_hard")
     assert board
     sudoku.print_board(board)
+    print()
+    assert sudoku.solve(board)
+    sudoku.print_board(board)
