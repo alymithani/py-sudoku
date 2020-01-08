@@ -6,7 +6,7 @@ Sudoku puzzle game built in Python. Contains a solving function using a backtrac
 ### Usage
 
 ##### sudoku.py
-Uses a backtracking algorithm to complete a sudoku board represented by an array on integers. Can also determine if a board is not solvable (by returning false) or if a value is not valid at a certain position on the board given the values in its row, column or 3x3 box.
+Uses a backtracking algorithm to complete a sudoku board represented by an array of integers. Can also determine if a board is not solvable (by returning false) or if a value is not valid at a certain position on the board given the values in its row, column and 3x3 box.
 
 ##### board_gen.py
 Generates puzzle boards by using seed boards at four levels of difficulty (easy, medium, hard and very hard). Given seeds, the algorithm rotates, reflects and reassigns vales at random to create a unique puzzle for the user. Can generate a total of 5,806,080 unique puzzles per difficulty level. 
