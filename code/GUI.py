@@ -107,21 +107,65 @@ def draw_window(window, game_board, score, current_time):
     window.fill(WHITE)
     game_board.draw(window)
     font = pygame.font.SysFont('Comic Sans MS', 35)
-    text = font.render("Score: " + str(score), 1, (0,0,0))
+    text = font.render("Score: " + str(score), 1, BLACK)
     window.blit(text, (20,650))
     formatted_time = str(int(current_time//60)) + ":" + "{:0>2d}".format(int(current_time%60))
-    text = font.render("Time: "+ formatted_time, 1, (0,0,0))
+    text = font.render("Time: "+ formatted_time, 1, BLACK)
     window.blit(text, (480,650))
     pygame.display.update()
 
-if __name__ == "__main__":
-    window =  pygame.display.set_mode((630, 690))
+def get_difficulty():
+    window =  pygame.display.set_mode((600, 250))
     pygame.display.set_caption("py-sudoku")
-    game_board = Board("easy")
-    start_time = time.time()
-    score = 0
-    key = 0
+    window.fill(WHITE)
+    pygame.draw.line(window, BLACK, (0,100), (600,100), 6)
+    pygame.draw.line(window, BLACK, (150,100), (150,250), 6)
+    pygame.draw.line(window, BLACK, (300,100), (300,250), 6)
+    pygame.draw.line(window, BLACK, (450,100), (450,250), 6)
+    font = pygame.font.SysFont('Comic Sans MS', 35)
+    text = font.render("Select a Difficulty...", 1, BLACK)
+    window.blit(text, (180,40))
+    font = pygame.font.SysFont('Comic Sans MS', 25)
+    text = font.render("Easy", 1, BLACK)
+    window.blit(text, (55,175))
+    text = font.render("Medium", 1, BLACK)
+    window.blit(text, (195,175))
+    text = font.render("Hard", 1, BLACK)
+    window.blit(text, (355,175))
+    text = font.render("Very Hard", 1, BLACK)
+    window.blit(text, (485,175))
+    pygame.display.update()
+    difficulty = ''
     running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                position = pygame.mouse.get_pos()
+                if position[1] > 100:
+                    if 0 < position[0] < 150:
+                        difficulty = 'easy'
+                    elif 150 < position[0] < 300:
+                        difficulty = 'medium'
+                    elif 300 < position[0] < 450:
+                        difficulty = 'hard'
+                    else:
+                        difficulty = 'very_hard'
+                    running = False
+    return difficulty
+
+if __name__ == "__main__":
+    difficulty = get_difficulty()
+    running = False
+    if difficulty != '':
+        window =  pygame.display.set_mode((630, 690))
+        pygame.display.set_caption("py-sudoku")
+        game_board = Board(difficulty)
+        start_time = time.time()
+        score = 0
+        key = 0
+        running = True
     win = False
     while running:
         current_time = time.time() - start_time
