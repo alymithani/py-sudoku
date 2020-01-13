@@ -1,7 +1,7 @@
 # py-sudoku
 
 ### Description
-Sudoku puzzle game built in Python. Contains a solving function using a backtracking algorithm as well as a board generating algorithm at variable difficulties. GUI built using Pygame.
+Sudoku puzzle game built in Python. Contains a solving function using a backtracking algorithm as well as a board generating algorithm at variable difficulties. GUI built using Pygame. Testing using PyTest.
 
 ### Usage
 
